@@ -31,9 +31,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = User::sum('id');
+        $usersSum = User::count('id');
+        $booksSum = Book::count('id');
+        $book = Book::all();
+        $booktime = Book::latest('created_at')->first();
 
-        return view('admin.admin', ['user' => $user]);
+        return view('admin.admin', compact('usersSum', 'booksSum', 'book', '$booktime'));
 
     }
 
