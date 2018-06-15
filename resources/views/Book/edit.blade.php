@@ -1,6 +1,23 @@
 @extends('layouts.admin-dashboard')
 
 @section('content')
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{URL::asset('../../dist/css/adminlte.min.css')}}">
+<link rel="stylesheet" href="{{URL::asset('css/photoInput.css')}}">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- Sweet Alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Datepicker -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
   <!-- Main content -->
 
   <section class="content">
@@ -44,9 +61,7 @@
                   <label>Tahun</label>
                   <br>
                   <span class="glyphicon glyphicon-calendar"></span>
-                  <input id="number" type="number" name="tahun" value="{{ $book->Tahun_terbit }}" required
-                  oninvalid="this.setCustomValidity('Pilih Tahun')"
-                  oninput="setCustomValidity('')"></input>
+                  <input class="date-own form-control" style="width: 300px;" type="text" name="tahun" value="{{ $book->Tahun_terbit }}" required>
                   @if($errors->has('tahun'))
                     <br>
                     <b style="color:Red"> {{ $errors->first('tahun') }}</b>
@@ -82,12 +97,18 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Deskripsi</label><br>
+                  <textarea rows="4" cols="50" name="description" value="{{ $book->Deskripsi }}" required
+                  oninvalid="this.setCustomValidity('Masukkan Deskripsi Buku')"
+                  oninput="setCustomValidity('')"></textarea>
+                </div>
+
+                <div class="form-group">
                   <label for="exampleInputFile">File input</label>
                   <div class="input-group">
                     <div class="custom-file">
                       <input type="file" name="file" class="custom-file-input" required>
                       <br>
-                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
                   </div>
                 </div>
@@ -99,5 +120,28 @@
               {{ csrf_field() }}
               <input type="hidden" name="_method" value="PUT">
             </form>
+
+            <script>
+                function readURL(input) {
+                     if (input.files && input.files[0]) {
+                         var reader = new FileReader();
+
+                         reader.onload = function (e) {
+                             $('#blah')
+                                 .attr('src', e.target.result);
+                         };
+
+                         reader.readAsDataURL(input.files[0]);
+                     }
+                 }
+
+                 $('.date-own').datepicker({
+                     minViewMode: 2,
+                     format: 'yyyy'
+                   });
+
+
+            </script>
+
 
 @endsection

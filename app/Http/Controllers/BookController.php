@@ -9,6 +9,7 @@ use App\Book;
 use Session;
 use Validator;
 use File;
+use DateTime;
 
 class BookController extends Controller
 {
@@ -54,7 +55,14 @@ class BookController extends Controller
           Session::flash('flash_message', 'Data berhasil ditambahkan.');
           Session::flash('flash_type', 'alert-success');
 
+          //images
+          $request->file('image');
+          $imageName = time();
+          $image = $request->image->storeAs('public/images', $imageName.'.jpg');
+          // $image = Input::file('image')->store('public/images');
 
+
+          //PDF
           $request->file('file');
           $name = Input::file('file')->getClientOriginalName();
           $file = $request->file->storeAs('public/files', $name);
@@ -81,7 +89,9 @@ class BookController extends Controller
             $books->Penerbit         = $request->Penerbit;
             $books->Nama_penulis     = $request->Penulis;
             $books->Kategori         = $request->Kategori;
+            $books->Deskripsi        = $request->description;
             $books->url              = $name;
+            $books->img              = $imageName.'.jpg';
             $books->save();
             return redirect('/admin/book') ;
       }
@@ -146,6 +156,7 @@ class BookController extends Controller
         $books->Penerbit         = $request->Penerbit;
         $books->Nama_penulis     = $request->Penulis;
         $books->Kategori         = $request->Kategori;
+        $books->Deskripsi        = $request->description; 
         $books->url              = $name;
         $books->save();
         return redirect('/admin/book') ;

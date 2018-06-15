@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//user
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/detail/{id}', 'HomeController@show')->name('detail');
+Route::get('/home/all-book', 'HomeController@showAll')->name('showAll');
+Route::get('/home/all-book/search', 'HomeController@search')->name('search');
 
 
 Route::prefix('admin')->group(function(){
@@ -26,10 +30,12 @@ Route::prefix('admin')->group(function(){
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
 
-  //Mahasiswa
-  Route::get('/mahasiswa', 'MahasiswaController@index')->name('mahasiswa.index');
 
-  //Buku
+
+  //user list(admin)
+  Route::get('/user-list', 'User@index')->name('user-list');
+
+  //Buku(admin)
   Route::resource('book', 'BookController');
 
 });

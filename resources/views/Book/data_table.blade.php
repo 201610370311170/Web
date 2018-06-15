@@ -10,10 +10,10 @@
   <body>
 		<div id="wrap">
 			<div class="container">
-            <h2 style="color:black"><b>Daftar Buku</b></h2>
+            <h2 style="background-color:#e8ebef; padding:20px; margin:0px; text-align:center; font-family:sans-serif"><b>Daftar Buku</b></h2>
 
             <!-- Search -->
-            <input id="myInput" type="text" placeholder="Search..">
+            <input id="myInput" type="text" placeholder="Search.." style="float:right; margin-top:10px;">
             <br><br>
 
             <!-- Alert -->

@@ -54,7 +54,7 @@
           <li class="menu-has-children"><a href="#">Login</a>
             <ul>
               <li><a href="/admin">Admin</a></li>
-              <li><a href="/home">Mahasiswa</a></li>
+              <li><a href="/home">Pengunjung</a></li>
               </ul>
           </li>
         </ul>

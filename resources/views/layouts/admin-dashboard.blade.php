@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav">
 
           <!-- User Account: style can be found in dropdown.less -->
-          
+
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -119,7 +119,7 @@
       <ul class="sidebar-menu">
 
         <li class="treeview">
-          <a href="{{ Route('mahasiswa.index')}}">
+          <a href="{{ Route('user-list')}}">
             <i class="glyphicon glyphicon-user"></i> <span>Mahasiswa</span>
           </a>
         </li>

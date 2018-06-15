@@ -7,10 +7,16 @@
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{URL::asset('../../dist/css/adminlte.min.css')}}">
+<link rel="stylesheet" href="{{URL::asset('css/photoInput.css')}}">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- Sweet Alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Datepicker -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 <!-- Main content -->
 
@@ -56,9 +62,7 @@
                 <label>Tahun</label>
                 <br>
                 <span class="glyphicon glyphicon-calendar"></span>
-                <input id="number" type="number" name="tahun" value="{{ old('tahun') }}" required
-                oninvalid="this.setCustomValidity('Pilih Tahun')"
-                oninput="setCustomValidity('')"></input>
+                <input class="date-own form-control" style="width: 300px;" type="text"name="tahun" value="{{ old('tahun') }}" required>
                 @if($errors->has('tahun'))
                   <br>
                   <b style="color:Red"> {{ $errors->first('tahun') }}</b>
@@ -94,7 +98,28 @@
               </div>
 
               <div class="form-group">
-                <label for="exampleInputFile">File input</label>
+                <label>Deskripsi</label><br>
+                <textarea rows="4" cols="50" name="description" placeholder="  Masukkan Deskripsi tentang buku" value="{{ old('description') }}" required
+                oninvalid="this.setCustomValidity('Masukkan Deskripsi Buku')"
+                oninput="setCustomValidity('')"></textarea>
+              </div>
+
+
+              <div class="form-group">
+                <label for="exampleInputFile">Cover</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <img id="blah" src="http://placehold.it/180" alt="your image" />
+                    <br>
+                    <input type='file' onchange="readURL(this);" name="image" required/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+              <div class="form-group">
+                <label for="exampleInputFile">File input .pdf</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" name="file" class="custom-file-input" required>
@@ -123,6 +148,28 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    function readURL(input) {
+         if (input.files && input.files[0]) {
+             var reader = new FileReader();
+
+             reader.onload = function (e) {
+                 $('#blah')
+                     .attr('src', e.target.result);
+             };
+
+             reader.readAsDataURL(input.files[0]);
+         }
+     }
+
+     $('.date-own').datepicker({
+         minViewMode: 2,
+         format: 'yyyy'
+       });
+
+
+</script>
 
 
 @endsection
